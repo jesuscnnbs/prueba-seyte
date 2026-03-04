@@ -5,11 +5,14 @@ function useHeroes(searchQuery = "") {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
+  const [numberOfResultsShown, setNumberOfResultsShown] = useState(10);
+
   const fetchHeroes = async () => {
     if (!searchQuery) {
-      setError("Please enter a search query");
+      setError("Please enter the name of your favourite hero");
       return;
     }
+    setHeroes([]);
     setIsPending(true);
     setError(null);
     try {
@@ -26,7 +29,7 @@ function useHeroes(searchQuery = "") {
     }
   };
 
-  return { heroes, isPending, error, fetchHeroes};
+  return { heroes, isPending, error, numberOfResultsShown, setNumberOfResultsShown, fetchHeroes};
 }
 
 export default useHeroes;
